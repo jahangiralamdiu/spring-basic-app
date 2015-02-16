@@ -9,7 +9,7 @@
     </bean>
 
     <bean id="userAccounts" class="jh.springbasicapp.beans.UserAccounts">
-        <property name="user" ref="user"/>
+        <constructor-arg ref="user"/>
     </bean>
 
 </beans>

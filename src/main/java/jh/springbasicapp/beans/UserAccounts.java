@@ -7,6 +7,10 @@ public class UserAccounts {
 
     private User user;
 
+    public UserAccounts(User user) {
+        this.user = user;
+    }
+
     public User getUser() {
         return user;
     }
