@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="jh.springbasicapp.beans.User">
+        <property name="userName" value="Jahangir"/>
+        <property name="passWord" value="Demo1234"/>
+    </bean>
+
+    <bean id="userAccounts" class="jh.springbasicapp.beans.UserAccounts">
+        <property name="user" ref="user"/>
+    </bean>
+
+</beans>
