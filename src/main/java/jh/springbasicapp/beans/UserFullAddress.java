@@ -1,8 +1,11 @@
 package jh.springbasicapp.beans;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by lenovo on 17/02/2015.
  */
+@Component
 public class UserFullAddress {
 
     private String mobile;

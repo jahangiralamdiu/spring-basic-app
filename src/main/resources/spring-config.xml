@@ -6,6 +6,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
+    <context:component-scan base-package="jh.springbasicapp"/>
 
     <bean id="user" class="jh.springbasicapp.beans.User">
         <property name="userName" value="Jahangir"/>
@@ -16,10 +17,10 @@
         <constructor-arg ref="user"/>
     </bean>
 
-    <bean id="fullAddress" class="jh.springbasicapp.beans.UserFullAddress"
-            p:address="Mirpur-1"
-            p:email="jahangiralamdiu@gmail.com"
-            p:mobile="01923774442"/>
+    <!--<bean id="fullAddress" class="jh.springbasicapp.beans.UserFullAddress"-->
+            <!--p:address="Mirpur-1"-->
+            <!--p:email="jahangiralamdiu@gmail.com"-->
+            <!--p:mobile="01923774442"/>-->
 
 
 </beans>
