@@ -16,7 +16,11 @@ public class ApplicationRunner {
 
         User user = userAccounts.getUser();
 
+        UserFullAddress address = userAccounts.getFullAddress();
+
         System.out.println(user.getUserName());
+
+        System.out.println(address.getAddress() +" "+address.getEmail()+ " "+address.getMobile());
 
     }
 
