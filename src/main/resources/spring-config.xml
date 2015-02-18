@@ -8,19 +8,4 @@
     <context:annotation-config/>
     <context:component-scan base-package="jh.springbasicapp"/>
 
-    <bean id="user" class="jh.springbasicapp.beans.User">
-        <property name="userName" value="Jahangir"/>
-        <property name="passWord" value="Demo1234"/>
-    </bean>
-
-    <bean id="userAccounts" class="jh.springbasicapp.beans.UserAccounts">
-        <constructor-arg ref="user"/>
-    </bean>
-
-    <!--<bean id="fullAddress" class="jh.springbasicapp.beans.UserFullAddress"-->
-            <!--p:address="Mirpur-1"-->
-            <!--p:email="jahangiralamdiu@gmail.com"-->
-            <!--p:mobile="01923774442"/>-->
-
-
 </beans>
