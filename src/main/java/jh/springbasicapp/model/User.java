@@ -1,8 +1,14 @@
 package jh.springbasicapp.model;
 
-import org.springframework.stereotype.Component;
-
+import jh.springbasicapp.validator.Mobile;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 /**
  * Created by lenovo on 18/02/2015.
@@ -11,11 +17,24 @@ import java.util.Date;
 public class User {
 
     private int id;
+
+    @NotNull
+    @Size(min = 3, max = 15)
     private String userName;
+
+    @NotEmpty
     private String fullName;
+
+    @Mobile
     private String mobile;
+
+    @Email
     private String email;
+
     private String address;
+
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @Past
     private Date dateOfBirth;
 
     public int getId() {

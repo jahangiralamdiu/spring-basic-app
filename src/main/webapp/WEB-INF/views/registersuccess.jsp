@@ -1,26 +1,17 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
-  Date: 18/02/2015
-  Time: 04:06
+  Date: 19/02/2015
+  Time: 05:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Registration Page</title>
-
-    <style>
-        .errors
-        {
-            color:red;
-            font-style: italic;
-        }
-    </style>
+    <title></title>
 </head>
 <body>
-
 <form:form commandName="user">
 
     <label>
@@ -65,8 +56,6 @@
     <form:errors path="dateOfBirth" cssClass="errors"/>
     <br/>
     <br/>
-    <input type="submit" class="btn" value="Register"/>
 </form:form>
-
 </body>
 </html>
