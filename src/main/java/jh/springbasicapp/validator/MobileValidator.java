@@ -4,7 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * Created by lenovo on 19/02/2015.
+ * Created by Jahangir on 19/02/2015.
  */
 public class MobileValidator implements ConstraintValidator<Mobile, String> {
     @Override
@@ -31,7 +31,7 @@ public class MobileValidator implements ConstraintValidator<Mobile, String> {
         }
         //return false if nothing matches the input
         else {
-            return false;
+            return true;
         }
     }
 }

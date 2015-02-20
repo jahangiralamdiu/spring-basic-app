@@ -1,18 +1,37 @@
 package jh.springbasicapp.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by lenovo on 18/02/2015.
  */
+@Entity
+@Table(name="USER_ACCOUNT")
 public class UserEntity {
 
+    @Id
+    @Column
+    @SequenceGenerator(name = "UserAccountIdGenerator", sequenceName = "USER_ACCOUNT_ID", initialValue = 1, allocationSize =1 )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserAccountIdGenerator")
     private int id;
+
+    @Column(name = "USER_NAME", nullable = false, length = 35)
     private String userName;
+
+    @Column(name = "FULL_NAME", nullable = false, length = 100)
     private String fullName;
+
+    @Column(name = "MOBILE", length = 15)
     private String mobile;
+
+    @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
+
+    @Column(name = "ADDRESS", length = 300)
     private String address;
+
+    @Column(name="DATE_OF_BIRTH")
     private Date dateOfBirth;
 
     public int getId() {

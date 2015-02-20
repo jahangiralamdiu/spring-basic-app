@@ -2,6 +2,8 @@ package jh.springbasicapp.controller;
 
 
 import jh.springbasicapp.model.User;
+import jh.springbasicapp.service.RegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +19,9 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
+    @Autowired
+    private RegistrationService registrationService;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(@ModelAttribute("user") User user) {
         return "register";
@@ -27,10 +32,14 @@ public class RegistrationController {
         if (result.hasErrors()) {
             return "register";
         }
-        if (user.getFullName().equals("")) {
-            System.out.println("Null and double quote are same");
+
+        if (registrationService.doRegistration(user)==100)
+        {
+            return "registersuccess";
         }
-        return "registersuccess";
+
+
+        return "register";
     }
 
 }
