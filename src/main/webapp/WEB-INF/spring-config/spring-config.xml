@@ -5,6 +5,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
@@ -12,7 +13,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <mvc:annotation-driven/>
 
@@ -20,10 +23,25 @@
 
     <context:component-scan base-package="jh.springbasicapp"/>
 
-    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/"/>
-        <property name="suffix" value=".jsp"/>
+    <aop:aspectj-autoproxy/>
+
+    <mvc:resources mapping="/contents/${application.version}/css/**" location="/contents/css/" cache-period="31556926"/>
+    <mvc:resources mapping="/contents/${application.version}/js/**" location="/contents/js/" cache-period="31556926"/>
+    <mvc:resources mapping="/contents/${application.version}/img/**" location="/contents/images/" cache-period="31556926"/>
+
+    <bean id="tilesViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"  />
+
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/views/layout.xml</value>
+                <value>/WEB-INF/views/**/views.xml</value>
+            </list>
+        </property>
     </bean>
+
 
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
@@ -34,6 +52,7 @@
     <bean id="applicationProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
+                <value>classpath:configuration.properties</value>
                 <value>classpath:db.properties</value>
             </list>
         </property>
@@ -66,5 +85,7 @@
 
     <tx:annotation-driven/>
 
+    <bean id="jacksonMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 
 </beans>

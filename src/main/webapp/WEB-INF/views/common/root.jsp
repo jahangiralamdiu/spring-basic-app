@@ -5,12 +5,43 @@
   Time: 04:16
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri='http://java.sun.com/jstl/core_rt' prefix='c'%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
+
 <head>
-    <title></title>
+
+    <title>
+        <tiles:getAsString name="pageTitle" ignore="true"/>
+    </title>
+    <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/bootstrap.min.css"/>'/>
+    <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/color.css"/>'/>
+
 </head>
 <body>
+
+    <div class="container-fluid">
+
+        <!-- Insert Hearder -->
+        <tiles:insertAttribute name="header"/>
+
+
+        <!-- Insert common top menu -->
+        <tiles:insertAttribute name="topMenu"/>
+
+        <!-- Insert common welcome message -->
+        <tiles:insertAttribute name="welcomeMessage"/>
+
+        <!-- Insert main content -->
+        <tiles:insertAttribute name="content"/>
+
+        <!-- Insert footer -->
+
+        <tiles:insertAttribute name="footer"/>
+
+    </div>
 
 </body>
 </html>

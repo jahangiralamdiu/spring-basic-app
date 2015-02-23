@@ -7,20 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
-<head>
-    <title>Registration Page</title>
-
-    <style>
-        .errors
-        {
-            color:red;
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-
 <form:form commandName="user">
 
     <label>
@@ -67,6 +53,3 @@
     <br/>
     <input type="submit" class="btn" value="Register"/>
 </form:form>
-
-</body>
-</html>

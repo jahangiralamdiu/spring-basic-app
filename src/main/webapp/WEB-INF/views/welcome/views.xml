@@ -4,14 +4,9 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition name="register" extends="commonTemplate">
-        <put-attribute name="content" value="/WEB-INF/views/registration/register.jsp" />
-        <put-attribute name="pageTitle" value="Register Here"  />
-    </definition>
-
-    <definition name="registerSuccess" extends="commonTemplate">
-        <put-attribute name="content" value="/WEB-INF/views/registration/registersuccess.jsp" />
-        <put-attribute name="pageTitle" value="Registration Successful"  />
+    <definition name="index" extends="commonTemplate">
+        <put-attribute name="content" value="/WEB-INF/views/welcome/index.jsp" />
+        <put-attribute name="pageTitle" value="Welcome Page"  />
     </definition>
 
 </tiles-definitions>

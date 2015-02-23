@@ -4,23 +4,14 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition name="otherCreditCardAddBeneficiaryLeft" extends="commonTemplate">
-        <put-attribute name="leftMenu" value="/WEB-INF/views/account/cards/leftmenu.jsp" />
+    <definition name="register" extends="commonTemplate">
+        <put-attribute name="content" value="/WEB-INF/views/registration/register.jsp" />
+        <put-attribute name="pageTitle" value="Register Here"  />
     </definition>
 
-    <definition name="otherCreditCardAddBeneficiary" extends="otherCreditCardAddBeneficiaryLeft">
-        <put-attribute name="content" value="/WEB-INF/views/account/cards/othercreditcard/addbeneficiary/addbeneficiary.jsp" />
-        <put-attribute name="pageTitle" value="Other Credit Card Add Beneficiary"  />
-    </definition>
-
-    <definition name="otherCreditCardAddBeneficiaryView" extends="otherCreditCardAddBeneficiaryLeft">
-        <put-attribute name="content" value="/WEB-INF/views/account/cards/othercreditcard/addbeneficiary/addbeneficiaryView.jsp" />
-        <put-attribute name="pageTitle" value="Other Credit Card Add Beneficiary"  />
-    </definition>
-
-    <definition name="otherCreditCardAddBeneficiarySuccess" extends="otherCreditCardAddBeneficiaryLeft">
-        <put-attribute name="content" value="/WEB-INF/views/account/cards/othercreditcard/addbeneficiary/addbeneficiarySuccess.jsp" />
-        <put-attribute name="pageTitle" value="Other Credit Card Add Beneficiary"  />
+    <definition name="registersuccess" extends="commonTemplate">
+        <put-attribute name="content" value="/WEB-INF/views/registration/registersuccess.jsp" />
+        <put-attribute name="pageTitle" value="Registration Successful"  />
     </definition>
 
 </tiles-definitions>
