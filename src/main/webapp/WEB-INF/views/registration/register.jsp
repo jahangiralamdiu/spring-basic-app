@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form commandName="user">
+<form:form commandName="user" enctype="multipart/form-data">
 
     <label>
         User Name
@@ -49,6 +49,12 @@
     </label>
     <form:input path="dateOfBirth"/>
     <form:errors path="dateOfBirth" cssClass="errors"/>
+    <br/>
+    <br/>
+    <label>
+        Select an Image
+    </label>
+   <input type="file" name="imageFile"/>
     <br/>
     <br/>
     <input type="submit" class="btn" value="Register"/>

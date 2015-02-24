@@ -1,0 +1,9 @@
+table tr td
+{
+    border: 1px dashed red;
+}
+
+td{
+    color:green;
+    padding: 5px;
+}

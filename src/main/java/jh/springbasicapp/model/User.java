@@ -4,6 +4,8 @@ import jh.springbasicapp.validator.Mobile;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -36,6 +38,10 @@ public class User {
     @DateTimeFormat(pattern="MM/dd/yyyy")
     @Past
     private Date dateOfBirth;
+
+    private MultipartFile imageFile;
+
+    private String imageString;
 
     public int getId() {
         return id;
@@ -91,5 +97,21 @@ public class User {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    public String getImageString() {
+        return imageString;
+    }
+
+    public void setImageString(String imageString) {
+        this.imageString = imageString;
     }
 }

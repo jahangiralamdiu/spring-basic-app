@@ -14,4 +14,9 @@
         <put-attribute name="pageTitle" value="Registration Successful"  />
     </definition>
 
+    <definition name="viewallusers" extends="commonTemplate">
+        <put-attribute name="content" value="/WEB-INF/views/registration/viewallusers.jsp" />
+        <put-attribute name="pageTitle" value="List of registered users"  />
+    </definition>
+
 </tiles-definitions>

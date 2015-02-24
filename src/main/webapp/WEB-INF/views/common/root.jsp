@@ -17,7 +17,7 @@
         <tiles:getAsString name="pageTitle" ignore="true"/>
     </title>
     <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/bootstrap.min.css"/>'/>
-    <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/color.css"/>'/>
+    <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/customestyle.css"/>'/>
 
 </head>
 <body>

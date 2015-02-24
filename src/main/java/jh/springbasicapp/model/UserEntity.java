@@ -1,5 +1,7 @@
 package jh.springbasicapp.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -33,6 +35,9 @@ public class UserEntity {
 
     @Column(name="DATE_OF_BIRTH")
     private Date dateOfBirth;
+
+    @Column(name="IMAGE")
+    private byte[] imageFile;
 
     public int getId() {
         return id;
@@ -88,5 +93,13 @@ public class UserEntity {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public byte[] getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(byte[] imageFile) {
+        this.imageFile = imageFile;
     }
 }

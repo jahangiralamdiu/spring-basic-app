@@ -51,4 +51,7 @@
     <form:errors path="dateOfBirth" cssClass="errors"/>
     <br/>
     <br/>
+    <img src="data:image/jpg;base64,${imageString}" alt="Visruth.jpg not found" />
+    <br/>
+    <br/>
 </form:form>
