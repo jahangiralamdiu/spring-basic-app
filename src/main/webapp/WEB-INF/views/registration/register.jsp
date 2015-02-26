@@ -16,6 +16,15 @@
     <form:errors path="userName" cssClass="errors"/>
     <br/>
     <br/>
+
+    <label>
+        New Password
+    </label>
+    <form:password path="password"/>
+    <form:errors path="password" cssClass="errors"/>
+    <br/>
+    <br/>
+
     <label>
         Full Name
     </label>
