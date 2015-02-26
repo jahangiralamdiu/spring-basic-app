@@ -1,6 +1,7 @@
 package jh.springbasicapp.model;
 
 import jh.springbasicapp.validator.Mobile;
+import jh.springbasicapp.validator.Password;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +24,9 @@ public class User {
     @NotNull
     @Size(min = 3, max = 15)
     private String userName;
+
+    @Password
+    private String password;
 
     @NotEmpty
     private String fullName;
@@ -113,5 +117,13 @@ public class User {
 
     public void setImageString(String imageString) {
         this.imageString = imageString;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

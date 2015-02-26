@@ -21,6 +21,9 @@ public class UserEntity {
     @Column(name = "USER_NAME", nullable = false, length = 35)
     private String userName;
 
+    @Column(name="PASSWORD", length = 25)
+    private String password;
+
     @Column(name = "FULL_NAME", nullable = false, length = 100)
     private String fullName;
 
@@ -101,5 +104,13 @@ public class UserEntity {
 
     public void setImageFile(byte[] imageFile) {
         this.imageFile = imageFile;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

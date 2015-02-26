@@ -25,6 +25,7 @@ public class RegistrationService {
         UserEntity userEntity = new UserEntity();
 
         userEntity.setUserName(user.getUserName());
+        userEntity.setPassword(user.getPassword());
         userEntity.setFullName(user.getFullName());
         userEntity.setMobile(user.getMobile());
         userEntity.setEmail(user.getEmail());
