@@ -1,2 +1,4 @@
 *.iml
 target/*
+.idea/workspace.xml
+.idea/artifacts/spring_basic_app_war_exploded.xml
