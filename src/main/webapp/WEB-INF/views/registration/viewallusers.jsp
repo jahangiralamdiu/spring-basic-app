@@ -40,7 +40,7 @@
                         No Image
                     </c:when>
                     <c:otherwise>
-                        <img class="img-responsive" src="data:image/jpg;base64,${user.imageString}" alt="Image not found"/>
+                        <img class="img-responsive" src="data:image/jpg;base64,${user.imageString}" alt="Image not found" height="40" width="40"/>
                     </c:otherwise>
                 </c:choose>
           </td>
