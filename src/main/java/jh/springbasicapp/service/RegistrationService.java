@@ -3,10 +3,12 @@ package jh.springbasicapp.service;
 import jh.springbasicapp.encryptor.TextEncryptor;
 import jh.springbasicapp.model.User;
 import jh.springbasicapp.model.UserEntity;
-import jh.springbasicapp.repository.RegistrationRepository;
+import jh.springbasicapp.repository.UserRepository;
 import org.apache.commons.codec.binary.Base64;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,10 +18,11 @@ import java.util.List;
  * Created by lenovo on 18/02/2015.
  */
 @Service
+@Transactional
 public class RegistrationService {
 
     @Autowired
-    private RegistrationRepository registrationRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private TextEncryptor textEncryptor;
@@ -41,14 +44,28 @@ public class RegistrationService {
             e.printStackTrace();
         }
 
-        int responsecode = registrationRepository.save(userEntity);
+        try
+        {
+            userRepository.create(userEntity);
+            return 100;
+        }
+        catch (HibernateException hbex)
+        {
 
-        return responsecode;
+            hbex.printStackTrace();
+            return 101;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return 101;
+        }
+
     }
 
     public List<User> getAllUser()
     {
-        List<UserEntity> userEntities = registrationRepository.getAllUser();
+        List<UserEntity> userEntities = userRepository.getAll();
         List<User> users = new ArrayList<User>();
 
         for(UserEntity userEntity : userEntities)
