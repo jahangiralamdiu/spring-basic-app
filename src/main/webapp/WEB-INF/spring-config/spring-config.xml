@@ -19,8 +19,6 @@
 
     <mvc:annotation-driven/>
 
-    <context:annotation-config/>
-
     <context:component-scan base-package="jh.springbasicapp"/>
 
     <aop:aspectj-autoproxy/>
@@ -90,6 +88,11 @@
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="100000"/>
+    </bean>
+
+    <bean id="pbeStringEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+    <property name="password" value="${key.encryptionKey}"/>
+        <property name="stringOutputType" value="hexadecimal"/>
     </bean>
 
 </beans>

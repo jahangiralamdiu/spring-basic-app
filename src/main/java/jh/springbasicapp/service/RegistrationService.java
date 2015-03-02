@@ -1,5 +1,6 @@
 package jh.springbasicapp.service;
 
+import jh.springbasicapp.encryptor.TextEncryptor;
 import jh.springbasicapp.model.User;
 import jh.springbasicapp.model.UserEntity;
 import jh.springbasicapp.repository.RegistrationRepository;
@@ -19,13 +20,16 @@ public class RegistrationService {
 
     @Autowired
     private RegistrationRepository registrationRepository;
-    private UserEntity userEntity;
+
+    @Autowired
+    private TextEncryptor textEncryptor;
+
     public int doRegistration(User user)
     {
         UserEntity userEntity = new UserEntity();
 
         userEntity.setUserName(user.getUserName());
-        userEntity.setPassword(user.getPassword());
+        userEntity.setPassword(textEncryptor.encrypt(user.getPassword()));
         userEntity.setFullName(user.getFullName());
         userEntity.setMobile(user.getMobile());
         userEntity.setEmail(user.getEmail());
