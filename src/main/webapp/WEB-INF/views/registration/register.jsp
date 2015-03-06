@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form commandName="user" enctype="multipart/form-data">
-
+<form:form commandName="user" enctype="multipart/form-data" class="navbar-form navbar-left">
+    <div class="form-group">
     <label>
         User Name
     </label>
@@ -64,7 +64,10 @@
         Select an Image
     </label>
    <input type="file" name="imageFile"/>
+
     <br/>
-    <br/>
-    <input type="submit" class="btn" value="Register"/>
+    <input type="submit" class="btn btn-default" value="Register"/>
+
+    </div>
+
 </form:form>

@@ -26,7 +26,9 @@ public class TextEncryptor {
                 this.initEncryptor();
             }
 
-            return pbeStringEncryptor.encrypt(textToEncrypt);
+            String encryptedPassword = pbeStringEncryptor.encrypt(textToEncrypt);
+
+            return encryptedPassword;
         }
         catch (Exception ex)
         {

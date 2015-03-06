@@ -7,20 +7,37 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true">
+    <global-method-security pre-post-annotations="enabled" secured-annotations="enabled" authentication-manager-ref="BasicAuthenticationManager"/>
 
-        <intercept-url pattern="/**" access="ROLE_USER"/>
+    <http use-expressions="true" auto-config="true" authentication-manager-ref="BasicAuthenticationManager">
+        <intercept-url pattern="/contents/**"  access="permitAll"/>
+        <intercept-url pattern="/login*" access="permitAll" />
+        <intercept-url pattern="/favicon.ico" access="permitAll"/>
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
+
+        <form-login
+                login-page='/login'
+                default-target-url='/'
+                authentication-failure-url='/login?error=true'
+                authentication-success-handler-ref="baseAuthenticationSuccessProvider"/>
+
+        <logout logout-success-url="/login?logout" />
+        <access-denied-handler error-page="/403" />
+
+        <session-management>
+            <concurrency-control max-sessions="1" />
+        </session-management>
 
     </http>
 
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="jahangir" password="1234" authorities="ROLE_USER"/>
-            </user-service>
+    <authentication-manager id="BasicAuthenticationManager">
+        <authentication-provider ref="baseAuthenticationProvider">
         </authentication-provider>
     </authentication-manager>
 
+    <beans:bean id="baseAuthenticationProvider" class="jh.springbasicapp.provider.BasicAuthenticationProvider"/>
+
+    <beans:bean id="baseAuthenticationSuccessProvider" class="jh.springbasicapp.provider.BaseAuthenticationSuccessHandeler"/>
 
 
 </beans:beans>

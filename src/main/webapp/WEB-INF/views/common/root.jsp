@@ -7,7 +7,7 @@
 --%>
 
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ taglib uri='http://java.sun.com/jstl/core_rt' prefix='c'%>
+<%@ taglib uri='http://java.sun.com/jstl/core_rt' prefix='c' %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 
@@ -16,32 +16,45 @@
     <title>
         <tiles:getAsString name="pageTitle" ignore="true"/>
     </title>
-    <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/bootstrap.min.css"/>'/>
-    <link type="text/css" rel="stylesheet" href='<c:url value="/contents/${applicationVersion}/css/customestyle.css"/>'/>
+    <link type="text/css" rel="stylesheet"
+          href='<c:url value="/contents/${applicationVersion}/css/bootstrap.min.css"/>'/>
+    <link type="text/css" rel="stylesheet"
+          href='<c:url value="/contents/${applicationVersion}/css/customestyle.css"/>'/>
 
 </head>
 <body>
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <!-- Insert Hearder -->
+    <!-- Insert Hearder -->
+    <div class="row">
         <tiles:insertAttribute name="header"/>
-
-
-        <!-- Insert common top menu -->
-        <tiles:insertAttribute name="topMenu"/>
-
-        <!-- Insert common welcome message -->
-        <tiles:insertAttribute name="welcomeMessage"/>
-
-        <!-- Insert main content -->
-        <tiles:insertAttribute name="content"/>
-
-        <!-- Insert footer -->
-
-        <tiles:insertAttribute name="footer"/>
-
     </div>
+
+
+    <!-- Insert common top menu -->
+
+    <div class="row">
+        <tiles:insertAttribute name="topMenu"/>
+    </div>
+
+    <!-- Insert common welcome message -->
+    <div class="row">
+        <tiles:insertAttribute name="welcomeMessage"/>
+    </div>
+
+    <!-- Insert main content -->
+    <div class="row">
+        <tiles:insertAttribute name="content"/>
+    </div>
+
+    <!-- Insert footer -->
+
+    <div class="row">
+        <tiles:insertAttribute name="footer"/>
+    </div>
+
+</div>
 
 </body>
 </html>

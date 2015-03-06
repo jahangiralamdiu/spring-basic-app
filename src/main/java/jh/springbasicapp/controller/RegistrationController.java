@@ -34,6 +34,7 @@ public class RegistrationController extends BaseController{
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(@ModelAttribute("user") User user) {
+
         return "register";
     }
 
@@ -43,7 +44,7 @@ public class RegistrationController extends BaseController{
             return "register";
         }
 
-        if (registrationService.doRegistration(user)==100)
+        if (registrationService.doRegistration(user).getResponseCode()==100)
         {
 
             try {

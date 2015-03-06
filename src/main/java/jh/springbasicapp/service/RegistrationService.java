@@ -1,8 +1,12 @@
 package jh.springbasicapp.service;
 
 import jh.springbasicapp.encryptor.TextEncryptor;
+import jh.springbasicapp.enums.UserRole;
+import jh.springbasicapp.model.BaseResponse;
 import jh.springbasicapp.model.User;
 import jh.springbasicapp.model.UserEntity;
+import jh.springbasicapp.model.UserPermissionEntity;
+import jh.springbasicapp.repository.UserPermissionRepository;
 import jh.springbasicapp.repository.UserRepository;
 import org.apache.commons.codec.binary.Base64;
 import org.hibernate.HibernateException;
@@ -25,11 +29,18 @@ public class RegistrationService {
     private UserRepository userRepository;
 
     @Autowired
+    private UserPermissionRepository userPermissionRepository;
+
+    @Autowired
     private TextEncryptor textEncryptor;
 
-    public int doRegistration(User user)
+    public BaseResponse doRegistration(User user)
     {
         UserEntity userEntity = new UserEntity();
+
+        BaseResponse response = new BaseResponse();
+
+        List <String> errors = new ArrayList<String>();
 
         userEntity.setUserName(user.getUserName());
         userEntity.setPassword(textEncryptor.encrypt(user.getPassword()));
@@ -46,20 +57,46 @@ public class RegistrationService {
 
         try
         {
+            System.out.println("I am in service method");
             userRepository.create(userEntity);
-            return 100;
+
+            System.out.println("I am in service method middle");
+
+            this.insertUserRole(userEntity.getUserName(), UserRole.ROLE_USER.getCode());
+            response.setResponseCode(100);
+            System.out.println("I am in service method after");
         }
         catch (HibernateException hbex)
         {
 
             hbex.printStackTrace();
-            return 101;
+            response.setResponseCode(101);
+            errors.add("Hibernate Exception");
+
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
-            return 101;
+            response.setResponseCode(101);
+            errors.add("Unknown error Occured");
         }
+
+        response.setErrors(errors);
+
+        return response;
+    }
+
+    public void insertUserRole(String username, int roleId)
+    {
+        UserEntity userEntity = userRepository.getUserByUserId(username);
+
+        UserPermissionEntity userPermissionEntity = new UserPermissionEntity();
+
+        userPermissionEntity.setUserId(userEntity.getId());
+
+        userPermissionEntity.setUserRoleId(roleId);
+
+        userPermissionRepository.create(userPermissionEntity);
 
     }
 
