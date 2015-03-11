@@ -9,65 +9,118 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <form:form commandName="user" enctype="multipart/form-data" class="navbar-form navbar-left">
     <div class="form-group">
-    <label>
-        User Name
-    </label>
-    <form:input path="userName"/>
-    <form:errors path="userName" cssClass="errors"/>
-    <br/>
-    <br/>
+    <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            User Name
+        </label>
+    </div>
+    <div class="col-md-4">
+        <form:input path="userName"/>
+        <form:errors path="userName" cssClass="errors"/>
+    </div>
+    </div>
+        <br/>
+    <div class="row">
+    <div class="col-md-4 col-md-offset-2">
 
-    <label>
-        New Password
-    </label>
-    <form:password path="password"/>
-    <form:errors path="password" cssClass="errors"/>
-    <br/>
-    <br/>
+        <label>
+            New Password
+        </label>
+    </div>
 
-    <label>
-        Full Name
-    </label>
-    <form:input path="fullName"/>
-    <form:errors path="fullName" cssClass="errors"/>
-    <br/>
-    <br/>
-    <label>
-        Mobile
-    </label>
-    <form:input path="mobile"/>
-    <form:errors path="mobile" cssClass="errors"/>
-    <br/>
-    <br/>
-    <label>
-        Email
-    </label>
-    <form:input path="email"/>
-    <form:errors path="email" cssClass="errors"/>
-    <br/>
-    <br/>
-    <label>
-        Address
-    </label>
-    <form:input path="address"/>
-    <form:errors path="address" cssClass="errors"/>
-    <br/>
-    <br/>
-    <label>
-        DOB
-    </label>
-    <form:input path="dateOfBirth"/>
-    <form:errors path="dateOfBirth" cssClass="errors"/>
-    <br/>
-    <br/>
-    <label>
-        Select an Image
-    </label>
-   <input type="file" name="imageFile"/>
+    <div class="col-md-4">
+        <form:password path="password"/>
+        <form:errors path="password" cssClass="errors"/>
+    </div>
+    </div>
+        <br/>
 
-    <br/>
-    <input type="submit" class="btn btn-default" value="Register"/>
+    <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            Full Name
+        </label>
+    </div>
+
+    <div class="col-md-4">
+        <form:input path="fullName"/>
+        <form:errors path="fullName" cssClass="errors"/>
+    </div>
+    </div>
+        <br/>
+    <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            Mobile
+        </label>
+    </div>
+    <div class="col-md-4">
+        <form:input path="mobile"/>
+        <form:errors path="mobile" cssClass="errors"/>
+    </div>
+</div>
+        <br/>
+
+    <div class="row">
+
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            Email
+        </label>
+    </div>
+    <div class="col-md-4">
+        <form:input path="email"/>
+        <form:errors path="email" cssClass="errors"/>
+    </div>
+</div>
+        <br/>
+
+    <div class="row">
+
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            Address
+        </label>
+    </div>
+    <div class="col-md-4">
+        <form:input path="address"/>
+        <form:errors path="address" cssClass="errors"/>
+    </div>
+ </div>
+        <br/>
+
+    <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            DOB
+        </label>
+    </div>
+    <div class="col-md-4">
+        <form:input path="dateOfBirth"/>
+        <form:errors path="dateOfBirth" cssClass="errors"/>
+    </div>
 
     </div>
 
+        <br/>
+
+    <div class="row">
+
+    <div class="col-md-4 col-md-offset-2">
+        <label>
+            Select an Image
+        </label>
+    </div>
+    <div class="col-md-4">
+        <input type="file" name="imageFile"/>
+    </div>
+    </div>
+        <br/>
+    <div class="row">
+    <div class="col-md-4 col-md-offset-6">
+        <input type="submit" class="btn btn-default" value="Register"/>
+    </div>
+</div>
+</div>
 </form:form>
