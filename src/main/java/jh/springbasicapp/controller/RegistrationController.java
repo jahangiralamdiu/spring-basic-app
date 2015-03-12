@@ -2,6 +2,7 @@ package jh.springbasicapp.controller;
 
 
 import com.fasterxml.jackson.databind.deser.Deserializers;
+import jh.springbasicapp.model.BaseResponse;
 import jh.springbasicapp.model.User;
 import jh.springbasicapp.service.RegistrationService;
 import org.apache.commons.codec.binary.Base64;
@@ -38,13 +39,16 @@ public class RegistrationController extends BaseController{
         return "register";
     }
 
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String doRegister(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "register";
         }
 
-        if (registrationService.doRegistration(user).getResponseCode()==100)
+        BaseResponse response = registrationService.doRegistration(user);
+
+        if (response.getResponseCode()==100)
         {
 
             try {
