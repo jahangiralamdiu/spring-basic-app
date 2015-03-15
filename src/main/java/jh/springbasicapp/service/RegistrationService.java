@@ -183,4 +183,25 @@ public class RegistrationService {
 
     }
 
+    public User getRegisteredUser(String userName) {
+
+        UserEntity userEntity = userRepository.getUserByUserId(userName);
+
+        User user = new User();
+        user.setUserName(userEntity.getUserName());
+        user.setFullName(userEntity.getFullName());
+        user.setAddress(userEntity.getAddress());
+        user.setMobile(userEntity.getMobile());
+        user.setEmail(userEntity.getEmail());
+        user.setDateOfBirth(userEntity.getDateOfBirth());
+        if(userEntity.getImageFile()==null)
+        {
+            user.setImageString("noimage");
+        }
+        else
+        {
+            user.setImageString(Base64.encodeBase64String(userEntity.getImageFile()));
+        }
+        return user;
+    }
 }
