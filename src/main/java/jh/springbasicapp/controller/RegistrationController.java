@@ -61,6 +61,7 @@ public class RegistrationController extends BaseController{
             }
 
             redirectAttributes.addAttribute("userName", user.getUserName());
+            redirectAttributes.addFlashAttribute("message", "You have successfully registered!");
 
             return "redirect:/registersuccess";
         }

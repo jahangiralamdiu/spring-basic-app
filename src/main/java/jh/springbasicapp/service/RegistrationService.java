@@ -34,58 +34,6 @@ public class RegistrationService {
     @Autowired
     private TextEncryptor textEncryptor;
 
-    public int doRegistrationE(User user)
-    {
-        UserEntity userEntity = new UserEntity();
-
-        BaseResponse response = new BaseResponse();
-
-        List <String> errors = new ArrayList<String>();
-
-        userEntity.setUserName(user.getUserName());
-        userEntity.setPassword(textEncryptor.encrypt(user.getPassword()));
-        userEntity.setFullName(user.getFullName());
-        userEntity.setMobile(user.getMobile());
-        userEntity.setEmail(user.getEmail());
-        userEntity.setAddress(user.getAddress());
-        userEntity.setDateOfBirth(user.getDateOfBirth());
-        try {
-            userEntity.setImageFile(user.getImageFile().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try
-        {
-            System.out.println("I am in service method");
-            userRepository.create(userEntity);
-
-            System.out.println("I am in service method middle");
-
-            this.insertUserRole(userEntity.getUserName(), UserRole.ROLE_USER.getCode());
-            response.setResponseCode(100);
-            System.out.println("I am in service method after");
-        }
-        catch (HibernateException hbex)
-        {
-
-            hbex.printStackTrace();
-            response.setResponseCode(101);
-            errors.add("Hibernate Exception");
-
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-            response.setResponseCode(101);
-            errors.add("Unknown error Occured");
-        }
-
-        response.setErrors(errors);
-
-        return 100;
-    }
-
     public BaseResponse doRegistration(User user)
     {
         UserEntity userEntity = new UserEntity();
@@ -109,14 +57,9 @@ public class RegistrationService {
 
         try
         {
-            System.out.println("I am in service method");
             userRepository.create(userEntity);
-
-            System.out.println("I am in service method middle");
-
             this.insertUserRole(userEntity.getUserName(), UserRole.ROLE_USER.getCode());
             response.setResponseCode(100);
-            System.out.println("I am in service method after");
         }
         catch (HibernateException hbex)
         {

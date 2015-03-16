@@ -23,15 +23,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by BS-113-Jahangir on 3/12/2015.
+ * CopyRight @Jahangir
  */
 
 @RunWith(MockitoJUnitRunner.class)
@@ -69,21 +68,24 @@ public class RegistrationControllerTest {
         response.setResponseCode(100);
 
 
-        FileInputStream fis = null;
+        FileInputStream fis;
         try {
             fis = new FileInputStream("E:\\images.jpg");
 //            fis = new FileInputStream("/home/jahangir/Documents/NoImage_592x444.jpg");
             imageFile = new MockMultipartFile("imageFile",fis);
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
     @Test
-    public void registerPageGetTest() throws Exception {
+    public void registerPageGetTest() throws Exception
+    {
         this.mockMvc.perform(get("/register"))
                 .andExpect(view().name("register"));
 
@@ -94,8 +96,9 @@ public class RegistrationControllerTest {
     {
         setupForRegistratrion();
 
-        when(registrationService.doRegistration(any(User.class))
-        ).thenReturn(response);
+        when(registrationService.doRegistration(any(User.class)))
+                .thenReturn(response);
+
         this.mockMvc.perform(MockMvcRequestBuilders.fileUpload("/register")
                 .file(imageFile)
                 .param("password", "Tokchud")
@@ -112,9 +115,11 @@ public class RegistrationControllerTest {
         setupForRegistratrion();
         response.setResponseCode(200);
 
-        when(registrationService.doRegistration(any(User.class))
-        ).thenReturn(response);
-        this.mockMvc.perform(MockMvcRequestBuilders.fileUpload("/register")
+        when(registrationService.doRegistration(any(User.class)))
+                .thenReturn(response);
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .fileUpload("/register")
                 .file(imageFile)
                 .param("userName", "jahangir")
                 .param("password", "Tokchudb0$")
@@ -130,9 +135,11 @@ public class RegistrationControllerTest {
     {
         setupForRegistratrion();
 
-        when(registrationService.doRegistration(any(User.class))
-        ).thenReturn(response);
-        this.mockMvc.perform(MockMvcRequestBuilders.fileUpload("/register")
+        when(registrationService.doRegistration(any(User.class)))
+                .thenReturn(response);
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .fileUpload("/register")
                 .file(imageFile)
                 .param("userName", "jahangir")
                 .param("password", "Tokchudb0$")
@@ -146,13 +153,13 @@ public class RegistrationControllerTest {
     }
 
     @Test
-
     public void registrationSuccessViewTest() throws Exception
     {
         User user = new User();
         user.setId(20);
         user.setUserName("jahangir");
         user.setEmail("jdjjd");
+
         when(registrationService.getRegisteredUser("jahangir"))
                 .thenReturn(user);
 
@@ -165,9 +172,10 @@ public class RegistrationControllerTest {
     public void viewAllUserTest() throws Exception
     {
         List<User> users = new ArrayList<User>();
-            users.add(new User());
+        users.add(new User());
+
         when(registrationService.getAllUser())
-        .thenReturn(users);
+                .thenReturn(users);
 
         this.mockMvc.perform(get("/view"))
                 .andExpect(status().isOk())
