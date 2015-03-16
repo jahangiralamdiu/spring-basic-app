@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
@@ -40,7 +41,7 @@ public class RegistrationController extends BaseController{
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String doRegister(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+    public String doRegister(@ModelAttribute("user") @Valid User user, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
         if (result.hasErrors()) {
             return "register";
         }
@@ -59,7 +60,9 @@ public class RegistrationController extends BaseController{
                     e.printStackTrace();
             }
 
-            return "forward:registersuccess/"+user.getUserName();
+            redirectAttributes.addAttribute("userName", user.getUserName());
+
+            return "redirect:/registersuccess";
         }
 
 
@@ -75,8 +78,8 @@ public class RegistrationController extends BaseController{
 
     }
 
-    @RequestMapping(value = "/registersuccess/{userName}")
-    public String registerSuccess(@PathVariable String userName, Model model)
+    @RequestMapping(value = "/registersuccess")
+    public String registerSuccess(@RequestParam String userName, Model model)
     {
         User user = registrationService.getRegisteredUser(userName);
 

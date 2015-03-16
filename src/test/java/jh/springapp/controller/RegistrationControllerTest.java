@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,6 +27,7 @@ import java.util.List;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -41,6 +43,7 @@ public class RegistrationControllerTest {
     @InjectMocks
     private RegistrationController registrationController;
 
+    @Spy
     private BaseResponse response;
 
     private MockMultipartFile imageFile;
@@ -63,12 +66,8 @@ public class RegistrationControllerTest {
 
     public void setupForRegistratrion()
     {
-        response = new BaseResponse();
         response.setResponseCode(100);
 
-//        response = mock(BaseResponse.class);
-//
-//        response.setResponseCode(100);
 
         FileInputStream fis = null;
         try {
@@ -141,19 +140,32 @@ public class RegistrationControllerTest {
                 .param("mobile", "0178577788")
                 .param("email", "jahangir@gmail.com"))
                 .andExpect(model().hasNoErrors())
-                .andExpect(forwardedUrl("registersuccess/jahangir"));
+                .andExpect(redirectedUrl("/registersuccess?userName=jahangir"));
 
         verify(registrationService, times(1)).doRegistration(any(User.class));
     }
 
     @Test
-    public void viewAllUserTest() throws Exception {
 
+    public void registrationSuccessViewTest() throws Exception
+    {
         User user = new User();
+        user.setId(20);
+        user.setUserName("jahangir");
+        user.setEmail("jdjjd");
+        when(registrationService.getRegisteredUser("jahangir"))
+                .thenReturn(user);
 
+        this.mockMvc.perform(get("/registersuccess?userName=jahangir"))
+                .andExpect(model().attribute("user", user))
+                .andExpect(view().name("registersuccess"));
+    }
+
+    @Test
+    public void viewAllUserTest() throws Exception
+    {
         List<User> users = new ArrayList<User>();
-        users.add(user);
-
+            users.add(new User());
         when(registrationService.getAllUser())
         .thenReturn(users);
 
