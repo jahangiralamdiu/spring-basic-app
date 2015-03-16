@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -65,6 +65,11 @@ public class RegistrationControllerTest {
     {
         response = new BaseResponse();
         response.setResponseCode(100);
+
+//        response = mock(BaseResponse.class);
+//
+//        response.setResponseCode(100);
+
         FileInputStream fis = null;
         try {
             fis = new FileInputStream("E:\\images.jpg");
@@ -137,6 +142,8 @@ public class RegistrationControllerTest {
                 .param("email", "jahangir@gmail.com"))
                 .andExpect(model().hasNoErrors())
                 .andExpect(forwardedUrl("registersuccess/jahangir"));
+
+        verify(registrationService, times(1)).doRegistration(any(User.class));
     }
 
     @Test
