@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri='http://java.sun.com/jstl/core_rt' prefix='c' %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -51,7 +53,14 @@
     <form:errors path="dateOfBirth" cssClass="errors"/>
     <br/>
     <br/>
-    <img src="data:image/jpg;base64,${imageString}" alt="Visruth.jpg not found" />
+    <c:choose>
+        <c:when test="${user.imageString=='noimage'}">
+            No Image
+        </c:when>
+        <c:otherwise>
+            <img class="img-responsive" src="data:image/jpg;base64,${user.imageString}" alt="Image not found" height="40" width="40"/>
+        </c:otherwise>
+    </c:choose>
     <br/>
     <br/>
 </form:form>

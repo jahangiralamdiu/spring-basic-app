@@ -11,15 +11,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.io.FileInputStream;
@@ -31,7 +26,6 @@ import java.util.List;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -73,7 +67,8 @@ public class RegistrationControllerTest {
         response.setResponseCode(100);
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\images.jpg");
+//            fis = new FileInputStream("E:\\images.jpg");
+            fis = new FileInputStream("/home/jahangir/Documents/NoImage_592x444.jpg");
             imageFile = new MockMultipartFile("imageFile",fis);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -85,9 +80,9 @@ public class RegistrationControllerTest {
 
     @Test
     public void registerPageGetTest() throws Exception {
-        this.mockMvc.perform(get("/registers"))
-                .andExpect(view().name("register"))
-                .andExpect(forwardedUrl("register.jsp"));
+        this.mockMvc.perform(get("/register"))
+                .andExpect(view().name("register"));
+
     }
 
     @Test
@@ -104,8 +99,7 @@ public class RegistrationControllerTest {
                 .param("mobile", "0178577788")
                 .param("email", "jah"))
                 .andExpect(model().hasErrors())
-                .andExpect(status().isMovedTemporarily())
-                .andExpect(redirectedUrl("/register"));
+                .andExpect(view().name("register"));
     }
 
     @Test
@@ -124,8 +118,7 @@ public class RegistrationControllerTest {
                 .param("mobile", "0178577788")
                 .param("email", "jahangir@gmail.com"))
                 .andExpect(model().hasNoErrors())
-                .andExpect(status().isMovedTemporarily())
-                .andExpect(redirectedUrl("/register"));
+                .andExpect(view().name("register"));
     }
 
     @Test
@@ -143,8 +136,7 @@ public class RegistrationControllerTest {
                 .param("mobile", "0178577788")
                 .param("email", "jahangir@gmail.com"))
                 .andExpect(model().hasNoErrors())
-                .andExpect(status().isMovedTemporarily())
-                .andExpect(redirectedUrl("/registersuccess"));
+                .andExpect(forwardedUrl("registersuccess/jahangir"));
     }
 
     @Test

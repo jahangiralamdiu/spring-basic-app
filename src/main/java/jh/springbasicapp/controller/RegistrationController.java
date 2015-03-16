@@ -12,10 +12,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.validation.Valid;
@@ -45,7 +42,7 @@ public class RegistrationController extends BaseController{
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String doRegister(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "redirect:/register";
+            return "register";
         }
 
         BaseResponse response = registrationService.doRegistration(user);
@@ -62,11 +59,11 @@ public class RegistrationController extends BaseController{
                     e.printStackTrace();
             }
 
-            return "redirect:/registersuccess";
+            return "forward:registersuccess/"+user.getUserName();
         }
 
 
-        return "redirect:/register";
+        return "register";
     }
 
     @RequestMapping(value = "/view")
@@ -78,9 +75,13 @@ public class RegistrationController extends BaseController{
 
     }
 
-    @RequestMapping(value = "/registersuccess")
-    public String registerSuccess()
+    @RequestMapping(value = "/registersuccess/{userName}")
+    public String registerSuccess(@PathVariable String userName, Model model)
     {
+        User user = registrationService.getRegisteredUser(userName);
+
+        model.addAttribute("user", user);
+
         return "registersuccess";
     }
 
