@@ -67,8 +67,8 @@ public class RegistrationControllerTest {
         response.setResponseCode(100);
         FileInputStream fis = null;
         try {
-//            fis = new FileInputStream("E:\\images.jpg");
-            fis = new FileInputStream("/home/jahangir/Documents/NoImage_592x444.jpg");
+            fis = new FileInputStream("E:\\images.jpg");
+//            fis = new FileInputStream("/home/jahangir/Documents/NoImage_592x444.jpg");
             imageFile = new MockMultipartFile("imageFile",fis);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
