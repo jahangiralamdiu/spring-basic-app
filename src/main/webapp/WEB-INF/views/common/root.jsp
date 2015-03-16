@@ -13,6 +13,8 @@
 
 <head>
 
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico" />
+
     <title>
         <tiles:getAsString name="pageTitle" ignore="true"/>
     </title>

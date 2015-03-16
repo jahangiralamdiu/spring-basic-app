@@ -18,4 +18,5 @@ public class WelcomeController extends BaseController {
     {
         return "index";
     }
+
 }

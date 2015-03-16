@@ -12,7 +12,7 @@
     <http use-expressions="true" auto-config="true" authentication-manager-ref="BasicAuthenticationManager">
         <intercept-url pattern="/contents/**"  access="permitAll"/>
         <intercept-url pattern="/login*" access="permitAll" />
-        <intercept-url pattern="/favicon.ico" access="permitAll"/>
+        <intercept-url pattern="favicon.ico" access="permitAll"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
 
         <form-login
