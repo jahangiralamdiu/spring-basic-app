@@ -49,10 +49,14 @@ public class RegistrationService {
         userEntity.setEmail(user.getEmail());
         userEntity.setAddress(user.getAddress());
         userEntity.setDateOfBirth(user.getDateOfBirth());
-        try {
-            userEntity.setImageFile(user.getImageFile().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        if(user.getImageFile() != null)
+        {
+            try {
+                userEntity.setImageFile(user.getImageFile().getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         try
@@ -66,14 +70,14 @@ public class RegistrationService {
 
             hbex.printStackTrace();
             response.setResponseCode(101);
-            errors.add("Hibernate Exception");
+            errors.add(hbex.getMessage());
 
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
             response.setResponseCode(101);
-            errors.add("Unknown error Occured");
+            errors.add(ex.getMessage());
         }
 
         response.setErrors(errors);
