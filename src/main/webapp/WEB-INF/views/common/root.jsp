@@ -19,15 +19,12 @@
         <tiles:getAsString name="pageTitle" ignore="true"/>
     </title>
     <link type="text/css" rel="stylesheet"
-          href='<c:url value="/contents/${applicationVersion}/css/bootstrap.min.css"/>'/>
-    <link type="text/css" rel="stylesheet"
           href='<c:url value="/contents/${applicationVersion}/css/customestyle.css"/>'/>
 
 </head>
 <body>
 
-<div class="container-fluid">
-
+<div class="main-container">
     <!-- Insert Hearder -->
     <div class="row">
         <tiles:insertAttribute name="header"/>

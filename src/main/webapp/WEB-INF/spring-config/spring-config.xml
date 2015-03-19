@@ -25,14 +25,13 @@
 
     <mvc:resources mapping="/contents/${application.version}/css/**" location="/contents/css/" cache-period="31556926"/>
     <mvc:resources mapping="/contents/${application.version}/js/**" location="/contents/js/" cache-period="31556926"/>
-    <mvc:resources mapping="/contents/${application.version}/img/**" location="/contents/images/" cache-period="31556926"/>
-    <mvc:resources location="/contents/images/" mapping="/contents/images/**" cache-period="31556926"/>
+    <mvc:resources mapping="/contents/${application.version}/images/**" location="/contents/images/" cache-period="31556926"/>
 
     <bean id="tilesViewResolver"
           class="org.springframework.web.servlet.view.UrlBasedViewResolver"
           p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"  />
 
-    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" lazy-init="true">
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
                 <value>/WEB-INF/views/layout.xml</value>

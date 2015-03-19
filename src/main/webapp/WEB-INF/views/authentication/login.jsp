@@ -12,7 +12,11 @@
 <form action="j_spring_security_check" name="f" method="POST">
 
     <table>
+
         <tr>
+            <div id="userIdPasswordNotGiven">
+                Please enter User ID and Password.
+            </div>
             <td>User:</td>
             <td><input type="text" name="j_username" value=""></td>
         </tr>
@@ -23,12 +27,10 @@
         </tr>
 
         <tr>
-            <td colspan="2"><input type="submit" name="Submit" value="Submit"></td>
+            <td><input type="submit" name="Submit" value="Submit"></td>
+            <td><input type="reset" name="Reset" value="Reset"></td>
         </tr>
 
-        <tr>
-            <td colspan="2"><input type="reset" name="Reset" value="Reset"></td>
-        </tr>
         <tr>
             <td align="left" colspan="2">
                 <c:if test="${not empty param.error}">
@@ -36,11 +38,8 @@
                         <c:out value='${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}'></c:out>
                     </div>
                 </c:if>
-                <div id="userIdPasswordNotGiven">
-                    Please enter User ID and Password.
-                </div>
             </td>
         </tr>
     </table>
-    Please enter User ID and Passworsdd.
+
 </form>
