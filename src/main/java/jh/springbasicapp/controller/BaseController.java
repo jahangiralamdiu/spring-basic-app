@@ -14,7 +14,7 @@ public class BaseController {
     private String applicationVersion;
 
     @ModelAttribute
-    public void addGlobalAttributes( Map<String, Object> map ) {
+    public void addGlobalAttributes(Map<String, Object> map) {
         map.put("applicationVersion", applicationVersion);
     }
 }

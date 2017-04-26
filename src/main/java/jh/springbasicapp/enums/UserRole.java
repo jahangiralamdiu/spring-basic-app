@@ -10,19 +10,15 @@ public enum UserRole {
 
     private int code;
 
-    private UserRole(int code)
-    {
+    private UserRole(int code) {
         this.code = code;
     }
 
-    public static String getNameByValue(int code)
-    {
-        String name="";
+    public static String getNameByValue(int code) {
+        String name = "";
 
-        for(UserRole userRole : UserRole.values())
-        {
-            if(userRole.getCode() == code)
-            {
+        for (UserRole userRole : UserRole.values()) {
+            if (userRole.getCode() == code) {
                 name = userRole.name();
                 break;
             }

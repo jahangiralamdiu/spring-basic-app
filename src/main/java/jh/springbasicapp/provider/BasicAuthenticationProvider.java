@@ -33,7 +33,7 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private TextEncryptor textEncryptor;
 
-    @Override
+
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
 
@@ -41,14 +41,12 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
         if (authentication.getName() != null && authentication.getCredentials() != null) {
             try {
 
-                UserEntity userEntity =userRepository.getUserByUserId(authentication.getName());
+                UserEntity userEntity = userRepository.getUserByUserId(authentication.getName());
                 User currentUser = createUserFromEntity(userEntity);
                 if (userEntity != null && textEncryptor.isEqual(userEntity.getPassword(), authentication.getCredentials().toString())) {
                     AUTHORITIES.add(new SimpleGrantedAuthority(UserRole.getNameByValue(2)));
                     return new UsernamePasswordAuthenticationToken(currentUser, "", AUTHORITIES);
-                }
-                else
-                {
+                } else {
                     throw new UserStatusException("User Credential does not match");
                 }
 
@@ -82,7 +80,7 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
         return user;
     }
 
-    @Override
+
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }

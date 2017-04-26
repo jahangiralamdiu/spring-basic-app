@@ -17,63 +17,47 @@ public class TextEncryptor {
     @Value("${key.encryptionKey}")
     private String encryptionKey;
 
-    public String encrypt(String textToEncrypt)
-    {
-        try
-        {
-            if (!pbeStringEncryptor.isInitialized())
-            {
+    public String encrypt(String textToEncrypt) {
+        try {
+            if (!pbeStringEncryptor.isInitialized()) {
                 this.initEncryptor();
             }
 
             String encryptedPassword = pbeStringEncryptor.encrypt(textToEncrypt);
 
             return encryptedPassword;
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return "";
         }
     }
 
-    public String dycrypt(String textToDycrypt)
-    {
-        try
-        {
-            if (!pbeStringEncryptor.isInitialized())
-            {
+    public String dycrypt(String textToDycrypt) {
+        try {
+            if (!pbeStringEncryptor.isInitialized()) {
                 this.initEncryptor();
             }
             return pbeStringEncryptor.decrypt(textToDycrypt);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return "";
         }
 
     }
 
-    public boolean isEqual(String encryptedText, String plainText)
-    {
-        try
-        {
-            if (!pbeStringEncryptor.isInitialized())
-            {
+    public boolean isEqual(String encryptedText, String plainText) {
+        try {
+            if (!pbeStringEncryptor.isInitialized()) {
                 this.initEncryptor();
             }
             return this.dycrypt(encryptedText).equals(plainText);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
     }
 
-    public void initEncryptor()
-    {
+    public void initEncryptor() {
         if (!pbeStringEncryptor.isInitialized()) {
             pbeStringEncryptor.setPassword(encryptionKey);
             pbeStringEncryptor.setStringOutputType("hexadecimal");

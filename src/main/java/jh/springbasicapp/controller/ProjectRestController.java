@@ -18,11 +18,10 @@ public class ProjectRestController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/project/{projectName}")
-    public List<ProjectTask> getProjectTask(@PathVariable String projectName)
-    {
+    public List<ProjectTask> getProjectTask(@PathVariable String projectName) {
         List<ProjectTask> projectTasks = new ArrayList<ProjectTask>();
 
-        for(int i=0; i<=5; i++) {
+        for (int i = 0; i <= 5; i++) {
 
             ProjectTask projectTask = new ProjectTask();
             projectTask.setId(1 + i);

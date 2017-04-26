@@ -18,7 +18,7 @@ public class BaseLogoutSuccessHandeler extends SimpleUrlLogoutSuccessHandler {
 
         String redirectUrl = "/logout";
         if (authentication != null)
-        request.getSession().invalidate();
+            request.getSession().invalidate();
         response.sendRedirect(redirectUrl);
 
         super.onLogoutSuccess(request, response, authentication);

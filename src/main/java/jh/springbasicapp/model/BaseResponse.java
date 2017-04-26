@@ -12,8 +12,7 @@ public class BaseResponse {
 
     private List<String> errors;
 
-    public BaseResponse()
-    {
+    public BaseResponse() {
         this.errors = new ArrayList<String>();
     }
 

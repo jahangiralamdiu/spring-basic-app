@@ -11,25 +11,17 @@ public class PasswordValidator implements ConstraintValidator<Password, String> 
     private static final String PASSWORD_PATTERN =
             "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";
 
-    @Override
     public void initialize(Password password) {
 
     }
 
-    @Override
     public boolean isValid(String password, ConstraintValidatorContext constraintValidatorContext) {
 
-
-        if (password == null)
-        {
+        if (password == null) {
             return false;
-        }
-        else if (password.matches(PASSWORD_PATTERN))
-        {
+        } else if (password.matches(PASSWORD_PATTERN)) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 

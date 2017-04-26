@@ -39,7 +39,7 @@ public class User {
 
     private String address;
 
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     @Past
     private Date dateOfBirth;
 

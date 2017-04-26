@@ -28,7 +28,7 @@ import static com.sun.org.apache.xml.internal.security.utils.Base64.*;
  * Created by lenovo on 18/02/2015.
  */
 @Controller
-public class RegistrationController extends BaseController{
+public class RegistrationController extends BaseController {
 
     @Autowired
     private RegistrationService registrationService;
@@ -48,16 +48,13 @@ public class RegistrationController extends BaseController{
 
         BaseResponse response = registrationService.doRegistration(user);
 
-        if (response.getResponseCode()==100)
-        {
+        if (response.getResponseCode() == 100) {
             try {
-                    byte[] bytes = user.getImageFile().getBytes();
-                    String encodedImage = org.apache.commons.codec.binary.Base64.encodeBase64String(user.getImageFile().getBytes());
-                    user.setImageString(encodedImage);
-                }
-            catch (IOException e)
-            {
-                    e.printStackTrace();
+                byte[] bytes = user.getImageFile().getBytes();
+                String encodedImage = org.apache.commons.codec.binary.Base64.encodeBase64String(user.getImageFile().getBytes());
+                user.setImageString(encodedImage);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             redirectAttributes.addAttribute("userName", user.getUserName());
@@ -71,8 +68,7 @@ public class RegistrationController extends BaseController{
     }
 
     @RequestMapping(value = "/view")
-    public String viewAllUser(Model model)
-    {
+    public String viewAllUser(Model model) {
         model.addAttribute("users", registrationService.getAllUser());
 
         return "viewallusers";
@@ -80,8 +76,7 @@ public class RegistrationController extends BaseController{
     }
 
     @RequestMapping(value = "/registersuccess")
-    public String registerSuccess(@RequestParam String userName, Model model)
-    {
+    public String registerSuccess(@RequestParam String userName, Model model) {
         User user = registrationService.getRegisteredUser(userName);
 
         model.addAttribute("user", user);

@@ -19,16 +19,14 @@ public class TracingAspect {
 
     Logger logger = LoggerFactory.getLogger(TracingAspect.class);
 
-    public boolean isEnteringCalled()
-    {
+    public boolean isEnteringCalled() {
         return enteringCalled;
     }
 
     @Before("execution(* register(..))")
-    public void entering(JoinPoint jointPoint)
-    {
+    public void entering(JoinPoint jointPoint) {
         enteringCalled = true;
-        logger.trace("Entering "+jointPoint.getStaticPart().getSignature().toString());
+        logger.trace("Entering " + jointPoint.getStaticPart().getSignature().toString());
 
     }
 

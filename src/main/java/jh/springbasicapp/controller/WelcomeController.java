@@ -14,8 +14,7 @@ import java.util.Map;
 public class WelcomeController extends BaseController {
 
     @RequestMapping(value = "/")
-    public String welcome()
-    {
+    public String welcome() {
         return "index";
     }
 

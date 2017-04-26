@@ -34,13 +34,12 @@ public class RegistrationService {
     @Autowired
     private TextEncryptor textEncryptor;
 
-    public BaseResponse doRegistration(User user)
-    {
+    public BaseResponse doRegistration(User user) {
         UserEntity userEntity = new UserEntity();
 
         BaseResponse response = new BaseResponse();
 
-        List <String> errors = new ArrayList<String>();
+        List<String> errors = new ArrayList<String>();
 
         userEntity.setUserName(user.getUserName());
         userEntity.setPassword(textEncryptor.encrypt(user.getPassword()));
@@ -50,8 +49,7 @@ public class RegistrationService {
         userEntity.setAddress(user.getAddress());
         userEntity.setDateOfBirth(user.getDateOfBirth());
 
-        if(user.getImageFile() != null)
-        {
+        if (user.getImageFile() != null) {
             try {
                 userEntity.setImageFile(user.getImageFile().getBytes());
             } catch (IOException e) {
@@ -59,22 +57,17 @@ public class RegistrationService {
             }
         }
 
-        try
-        {
+        try {
             userRepository.create(userEntity);
             this.insertUserRole(userEntity.getUserName(), UserRole.ROLE_USER.getCode());
             response.setResponseCode(100);
-        }
-        catch (HibernateException hbex)
-        {
+        } catch (HibernateException hbex) {
 
             hbex.printStackTrace();
             response.setResponseCode(101);
             errors.add(hbex.getMessage());
 
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             response.setResponseCode(101);
             errors.add(ex.getMessage());
@@ -85,8 +78,7 @@ public class RegistrationService {
         return response;
     }
 
-    public void insertUserRole(String username, int roleId)
-    {
+    public void insertUserRole(String username, int roleId) {
         UserEntity userEntity = userRepository.getUserByUserId(username);
 
         UserPermissionEntity userPermissionEntity = new UserPermissionEntity();
@@ -99,13 +91,11 @@ public class RegistrationService {
 
     }
 
-    public List<User> getAllUser()
-    {
+    public List<User> getAllUser() {
         List<UserEntity> userEntities = userRepository.getAll();
         List<User> users = new ArrayList<User>();
 
-        for(UserEntity userEntity : userEntities)
-        {
+        for (UserEntity userEntity : userEntities) {
             User user = new User();
             user.setUserName(userEntity.getUserName());
             user.setFullName(userEntity.getFullName());
@@ -113,12 +103,9 @@ public class RegistrationService {
             user.setMobile(userEntity.getMobile());
             user.setEmail(userEntity.getEmail());
             user.setDateOfBirth(userEntity.getDateOfBirth());
-            if(userEntity.getImageFile()==null)
-            {
+            if (userEntity.getImageFile() == null) {
                 user.setImageString("noimage");
-            }
-            else
-            {
+            } else {
                 user.setImageString(Base64.encodeBase64String(userEntity.getImageFile()));
             }
 
@@ -141,12 +128,9 @@ public class RegistrationService {
         user.setMobile(userEntity.getMobile());
         user.setEmail(userEntity.getEmail());
         user.setDateOfBirth(userEntity.getDateOfBirth());
-        if(userEntity.getImageFile()==null)
-        {
+        if (userEntity.getImageFile() == null) {
             user.setImageString("noimage");
-        }
-        else
-        {
+        } else {
             user.setImageString(Base64.encodeBase64String(userEntity.getImageFile()));
         }
         return user;

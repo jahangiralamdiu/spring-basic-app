@@ -12,8 +12,7 @@ public class BaseModel {
 
     private List<String> errors;
 
-    public BaseModel()
-    {
+    public BaseModel() {
         this.errors = new ArrayList<String>();
     }
 

@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = MobileValidator.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+@Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mobile {
 

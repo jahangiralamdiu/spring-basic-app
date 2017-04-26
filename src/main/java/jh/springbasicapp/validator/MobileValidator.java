@@ -7,12 +7,10 @@ import javax.validation.ConstraintValidatorContext;
  * Created by Jahangir on 19/02/2015.
  */
 public class MobileValidator implements ConstraintValidator<Mobile, String> {
-    @Override
     public void initialize(Mobile mobile) {
 
     }
 
-    @Override
     public boolean isValid(String mobileNo, ConstraintValidatorContext constraintValidatorContext) {
 
         if (mobileNo == null) {

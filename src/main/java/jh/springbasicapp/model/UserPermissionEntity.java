@@ -15,10 +15,10 @@ public class UserPermissionEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserPermissionIdGenerator")
     private int id;
 
-    @Column(name ="USER_ID", nullable = false, length = 10)
+    @Column(name = "USER_ID", nullable = false, length = 10)
     private int userId;
 
-    @Column(name="USER_ROLE_ID", nullable = false, length = 10)
+    @Column(name = "USER_ROLE_ID", nullable = false, length = 10)
     private int userRoleId;
 
     public int getId() {

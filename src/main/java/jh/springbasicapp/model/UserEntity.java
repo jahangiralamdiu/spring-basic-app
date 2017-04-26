@@ -9,19 +9,19 @@ import java.util.Date;
  * Created by lenovo on 18/02/2015.
  */
 @Entity
-@Table(name="USER_ACCOUNT")
+@Table(name = "USER_ACCOUNT")
 public class UserEntity {
 
     @Id
     @Column
-    @SequenceGenerator(name = "UserAccountIdGenerator", sequenceName = "USER_ACCOUNT__ID", initialValue = 1, allocationSize =1 )
+    @SequenceGenerator(name = "UserAccountIdGenerator", sequenceName = "USER_ACCOUNT__ID", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserAccountIdGenerator")
     private int id;
 
     @Column(name = "USER_NAME", nullable = false, length = 35)
     private String userName;
 
-    @Column(name="PASSWORD", length = 100)
+    @Column(name = "PASSWORD", length = 100)
     private String password;
 
     @Column(name = "FULL_NAME", nullable = false, length = 100)
@@ -36,10 +36,10 @@ public class UserEntity {
     @Column(name = "ADDRESS", length = 300)
     private String address;
 
-    @Column(name="DATE_OF_BIRTH")
+    @Column(name = "DATE_OF_BIRTH")
     private Date dateOfBirth;
 
-    @Column(name="IMAGE")
+    @Column(name = "IMAGE")
     private byte[] imageFile;
 
     public int getId() {

@@ -12,16 +12,15 @@ import java.io.IOException;
 /**
  * Created by BS-113-Jahangir on 3/6/2015.
  */
-public class BaseAuthenticationSuccessHandeler extends SimpleUrlAuthenticationSuccessHandler{
+public class BaseAuthenticationSuccessHandeler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException
-    {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         String redirectUrl = "/";
 
-        if(auth != null)
+        if (auth != null)
 
             response.sendRedirect(redirectUrl);
 

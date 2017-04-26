@@ -17,8 +17,7 @@ import java.util.List;
 @Repository
 public class UserRepository extends BaseRepository<UserEntity> {
 
-    public UserEntity getUserByUserId(String userName)
-    {
+    public UserEntity getUserByUserId(String userName) {
         Criteria criteria = getSession().createCriteria(UserEntity.class)
                 .add(Restrictions.eq("userName", userName).ignoreCase());
 

@@ -13,8 +13,7 @@ public class AuthenticationService {
 
     private UserRepository userRepository;
 
-    public User getCurrentUser(String userName)
-    {
+    public User getCurrentUser(String userName) {
         User user = new User();
 
         UserEntity userEntity = userRepository.getUserByUserId(userName);
